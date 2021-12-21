@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import queryString from 'query-string'
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 import HeroeCard from '../heroes/HeroeCard';
 
-const SearchScreen = ({history}) => {
+const SearchScreen = () => {
 
+    const navigate = useNavigate();
     const location = useLocation();
     const {q = ''} = queryString.parse(location.search);
     const [inputSearch, setInputSearch] = useState(q);
@@ -24,7 +25,7 @@ const SearchScreen = ({history}) => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        history.push(`?q=${ inputSearch }`);
+        navigate(`?q=${ inputSearch }`);
     }
 
     const getResults = () => {

@@ -1,22 +1,20 @@
 import React, { useMemo } from 'react'
-import { Redirect, useParams } from 'react-router'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { heroesImages } from '../../helpers/heroesImages'; // Importa todos los recursos, (true) subcarpetas tambien
 import {getHeroeById} from '../../selectors/getHeroeById'
 
 //import batman from '../../assets/heroes/dc-batman.jpg'   //importando una sola imagen
 
- 
-
-const HeroesScreen = ({history}) => {
+const HeroesScreen = () => {
     const params = useParams();
+    const navigate = useNavigate();
     const {heroeId} = params;
     const heroe = useMemo(() => getHeroeById(heroeId), [heroeId]);
 
     if(!heroe){
-        return <Redirect to='/'/>
+        return <Navigate to='/' />
     }
     const {
-        id,
         superhero,
         alter_ego,
         publisher,
@@ -25,11 +23,7 @@ const HeroesScreen = ({history}) => {
     } = heroe;
 
     const handleReturn = () => {
-        if(history.length <= 2){
-            history.push('/');
-        }else{
-            history.goBack();
-        }
+        navigate( -1 ); 
     }
     return (
         <div className='row mt-5 animate__animated animate__swing'>

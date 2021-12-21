@@ -1,8 +1,8 @@
 import {mount, shallow} from 'enzyme'
 import { MemoryRouter } from 'react-router'
 import DcScreen from '../../componentes/dc/DcScreen'
-import DashboardRoutes from '../../router/DashboardRoutes'
-import PrivateRoute from '../../router/PrivateRoute'
+import DashboardRoutes from '../../routers/DashboardRoutes'
+import PrivateRoute from '../../routers/PrivateRoute'
 
 describe('Pruebas en <PrivateRoute />', () => {
     

@@ -1,7 +1,7 @@
 const { mount } = require("enzyme")
 const { MemoryRouter } = require("react-router")
 const { AuthContext } = require("../../auth/AuthContext")
-const { default: DashboardRoutes } = require("../../router/DashboardRoutes")
+const { default: DashboardRoutes } = require("../../routers/DashboardRoutes")
 
 
 describe('Pruebas en <DashboardRoutes/>', () => {

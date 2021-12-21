@@ -1,16 +1,18 @@
 import React, { useContext } from 'react'
-import { Link, NavLink, useHistory } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../auth/AuthContext'
 import { types } from '../../types/types';
 
 export const NavBar = () => {
 
-    const {user:{name}, dispatch} = useContext(AuthContext);
-    const history = useHistory();
+    const { user: { name }, dispatch } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        dispatch({type: types.logout});
-        history.replace('/login')
+        dispatch({ type: types.logout });
+        navigate('/login', {
+            replace: true
+        })
     }
 
     return (
@@ -27,32 +29,26 @@ export const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavLink
-                            activeClassName="active"
-                            className="nav-link"
-                            exact
+                            className={({ isActive }) => "nav-link " + (isActive ? "active" : "")}
                             to="/marvel"
                         >
                             Marvel
                         </NavLink>
 
                         <NavLink
-                            activeClassName="active"
-                            className="nav-link"
-                            exact
+                            className={({ isActive }) => "nav-link " + (isActive ? "active" : "")}
                             to="/dc"
                         >
                             DC
                         </NavLink>
 
                         <NavLink
-                            activeClassName="active"
-                            className="nav-link"
-                            exact
+                            className={({ isActive }) => "nav-link " + (isActive ? "active" : "")}
                             to="/search"
                         >
                             Search
                         </NavLink>
-                        <button  
+                        <button
                             className="nav-link btn"
                             onClick={handleLogout}
                         >

@@ -1,24 +1,26 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext'
 import { types } from '../../types/types';
 
-const LoginScreen = ({history}) => {
+const LoginScreen = () => {
 
     const {dispatch} = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const user = {
         name: 'Will'
     }
 
     const handleClick = () => {
-        //history.push('/')
         const lastPath = localStorage.getItem('lastPath') || '/';
         dispatch({
             type: types.login,
             payload: user
         })
+        navigate(lastPath, {
+            replace: true
+        })
         
-        history.replace( lastPath );
     }
     return (
         <div className='container mt-5'>
